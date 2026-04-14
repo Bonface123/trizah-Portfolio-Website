@@ -1,0 +1,69 @@
+/*
+  style.css — only things Tailwind CDN can't handle inline
+  Everything else is done with Tailwind utility classes in index.html
+*/
+
+html { scroll-behavior: smooth; }
+body { font-family: 'DM Sans', sans-serif; overflow-x: hidden; }
+
+/* Navbar glass blur on scroll (toggled by JS) */
+#navbar.scrolled {
+  background: rgba(253, 248, 245, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+}
+
+/* Scroll-reveal animation (toggled by JS IntersectionObserver) */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Portfolio overlay (gradient + hover fade) */
+.portfolio-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(26, 26, 46, 0.92) 0%, transparent 55%);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 20px 18px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+.portfolio-card:hover .portfolio-overlay {
+  opacity: 1;
+}
+
+/* Portfolio image zoom on hover */
+.portfolio-card img {
+  transition: transform 0.5s ease;
+}
+.portfolio-card:hover img {
+  transform: scale(1.06);
+}
+
+/* Animated background blob shapes */
+.blob-shape {
+  position: absolute;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  filter: blur(55px);
+  pointer-events: none;
+  animation: blob 8s ease-in-out infinite;
+}
+
+@keyframes blob {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50%       { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: #fdf8f5; }
+::-webkit-scrollbar-thumb { background: #ff94bc; border-radius: 3px; }
